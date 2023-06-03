@@ -1,12 +1,24 @@
 import { typescript } from 'projen';
+import { TrailingComma } from 'projen/lib/javascript';
 const project = new typescript.TypeScriptAppProject({
   defaultReleaseBranch: 'main',
   name: 'chatgpt-business',
   projenrcTs: true,
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  authorEmail: 'damadden88@googlemail.com',
+  authorName: 'Martin Mueller',
+
+  eslint: true,
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      singleQuote: true,
+      trailingComma: TrailingComma.ALL,
+    },
+  },
+
+  deps: ['openai', 'dotenv'],
+
+  gitignore: ['.env'],
 });
 project.synth();
