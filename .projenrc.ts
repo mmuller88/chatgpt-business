@@ -1,5 +1,5 @@
 import { typescript } from 'projen';
-const project = new typescript.TypeScriptAppProject({
+const project = new typescript.TypeScriptProject({
   defaultReleaseBranch: 'main',
   name: 'chatgpt-business',
   projenrcTs: true,
