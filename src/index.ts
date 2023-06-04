@@ -23,33 +23,23 @@ const prompt = async () => {
   const urls = [
     'https://www.google.com',
     'https://martinmueller.dev',
+    'https://martinmueller.dev/contact',
     'https://www.amazon.com',
   ];
 
   const currentMessages: ChatCompletionRequestMessage[] = [
     {
       role: 'system',
-      content: 'You are a system to extract the most important information',
-    },
-    {
-      role: 'system',
-      content:
-        'You can only answer using the json format. Care to not include any trailing commas.',
-    },
-    {
-      role: 'system',
-      content:
-        'You can not write any text outside of the brackets of the json. If you have anything to add include your thoughts to the comment field inside the json object',
-    },
-    {
-      role: 'assistant',
-      content: `These are the URLs you are about to assess: ${JSON.stringify(
-        urls,
-      )}`,
+      content: `
+      You are a system to extract the most important information.
+      You can only answer using the json format. Care to not include any trailing commas.
+      You can not write any text outside of the brackets of the json. If you have anything to add include your thoughts to the comment field inside the json object.
+      `,
     },
     {
       role: 'user',
       content: `
+      These are the URLs you are about to assess: ${JSON.stringify(urls)}
         Order the following URLs by the amount of information they might convey, e.g. URLs of contact pages, privacy policies or about pages are more important, you can limit the most_promising_urls list up.
         Please punish external urls, like social media with lower importance.
         An example would look like this: ${JSON.stringify({
